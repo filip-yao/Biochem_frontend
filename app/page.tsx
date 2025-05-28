@@ -8,9 +8,22 @@ import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
   const [view, setView] = useState<'home' | 'notes' | 'exercises' | 'noteDetail'>('home');
-  const [notes, setNotes] = useState([]);
-  const [exercises, setExercises] = useState([]);
-  const [selectedNote, setSelectedNote] = useState(null);
+  type Note = {
+    id: number;
+    title: string;
+    content: string;
+    category: string;
+  };
+  const [notes, setNotes] = useState<Note[]>([]);
+  type Exercise = {
+    id: number;
+    question: string;
+    correct: string;
+    answer: string;
+    category: string;
+  };
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
   useEffect(() => {
     async function fetchNotes() {
