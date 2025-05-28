@@ -30,7 +30,7 @@ export default function Home() {
       const res = await fetch('http://localhost:1337/api/notes');
       const data = await res.json();
       setNotes(
-        data.data.map((item: any) => ({
+        data.data.map((item: { id: number; title?: string; content?: string; category?: string }) => ({
           id: item.id,
           title: item.title || '',
           content: item.content || '',
@@ -43,7 +43,7 @@ export default function Home() {
       const res = await fetch('http://localhost:1337/api/exercises');
       const data = await res.json();
       setExercises(
-        data.data.map((item: any) => ({
+        data.data.map((item: { id: number; question?: string; correct?: string; category?: string }) => ({
           id: item.id,
           question: item.question || '',
           correct: item.correct || '',
